@@ -1,0 +1,48 @@
+@url = http://127.0.0.1:8000
+
+###
+GET {{url}}/api/todos
+
+# one request body = one Todos object.
+###
+POST {{url}}/api/todos
+Content-Type: application/json
+
+   {
+    "id": 1,
+    "title": "Buy clothes",
+    "description": "clean everything and organize",
+    "completed": false
+    }
+
+###
+POST {{url}}/api/todos
+Content-Type: application/json
+
+   {
+    "id": 2,
+    "title": "Buy perfume",
+    "description": "working and testing on",
+    "completed": false
+    }
+
+
+###
+GET {{url}}/api/todos/1
+
+
+### updated 2 -> 3
+PUT {{url}}/api/todos/2
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "Buy Items",
+  "description": "check and organize everything",
+  "completed": true
+}
+
+
+###
+DELETE {{url}}/api/todos/2
+Content-Type: application/json

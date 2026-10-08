@@ -1,0 +1,215 @@
+run by using:
+=> for fastapi, dont use pip use uv run fastapi dev,
+=> for running python command through:
+ uv run [file]
+uv run main.py
+=> for nextjs dont use npm use pnpm dev
+=> for checking/testing request/api install-> api client extension in vs code, and make file using .http e.g: api.http / request.http 
+
+
+for formatting:
+uv run ruff format
+uvx ruff format
+
+1. Refresh Python basics
+Don't build anything yet. Just get comfortable again.
+
+2. Refresh FastAPI basics
+Routes, path/query params, request bodies, Pydantic, responses, status codes, etc.
+
+3. THEN BUILD THIS:
+
+📝 Project #1 — Todo API
+
+Build it without following a tutorial.
+
+Your API should have:
+
+POST   /todos        → create todo
+GET    /todos        → get all todos
+GET    /todos/{id}   → get one todo
+PUT    /todos/{id}   → update todo
+DELETE /todos/{id}   → delete todo
+
+Initially, don't use a database.
+
+Just store the todos in a Python list/dictionary.
+
+You'll practice:
+
+FastAPI routes
+HTTP methods
+Pydantic(data validation)
+request/response data
+IDs
+CRUD
+error handling
+
+Then Project #2
+
+Build the same kind of thing but slightly harder:
+
+Expense Tracker API
+Again, start without a database.
+Add:
+
+expenses
+categories
+amounts
+dates
+filtering
+totals
+
+Then Project #3
+Book/Library API
+
+Add relationships:
+
+Authors
+   ↓
+Books
+
+THEN 🚨 introduce PostgreSQL.
+
+Take your Todo API and rebuild it:
+
+FastAPI
+   ↓
+PostgreSQL
+
+Now learn SQL because you need it for the project, rather than studying SQL endlessly beforehand.
+
+Then add authentication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Refresh Python basics
+     ↓
+2. FastAPI fundamentals refresh
+      ↓
+3 Build small FastAPI projects
+      ↓
+4. HTTP + REST + JSON
+        ↓
+5. Pydantic + validation
+
+        ↓
+
+6. SQL + PostgreSQL
+
+        ↓
+
+7. FastAPI + PostgreSQL
+
+        ↓
+
+8. Authentication / Authorization
+
+        ↓
+
+9. Build complete APIs
+
+        ↓
+
+10. Connect Next.js frontend
+
+        ↓
+
+11. Build 3–5 portfolio-quality full-stack projects
+
+        ↓
+
+12. Start targeting freelance jobs               After refreshing Python + FastAPI, go:
+
+
+
+Level 1 — tiny APIs
+
+/hello 
+
+ calculator API 
+
+ todo API 
+
+ notes API 
+
+
+Level 2 — real CRUD
+
+ Todo API with create/read/update/delete 
+
+ Notes API 
+
+ Book/library API 
+
+ Expense tracker API 
+
+
+
+Level 3 — database
+ Take one of those and add:
+
+FastAPI → PostgreSQL
+
+
+
+Learn SQL properly while doing it.
+
+
+
+Level 4 — authentication
+ Add:
+
+
+
+ signup/login 
+
+ password hashing 
+
+ JWT 
+
+ users 
+
+ permissions 
+
+
+
+Level 5 — serious project
+ Build something like:
+
+Project management API
+ Users → projects → tasks → authentication → permissions → PostgreSQL → proper API structure.
+
+Level 6 — your advantage 
+
+
+
+Connect your existing Next.js skills:
+
+
+
+        Next.js
+           ↓
+        FastAPI
+           ↓
+      PostgreSQL
+
+Now you're no longer just "learning Python."
+
+
+
+You're becoming a Python backend/full-stack developer. 
