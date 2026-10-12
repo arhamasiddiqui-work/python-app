@@ -9,7 +9,7 @@ POST {{url}}/api/todos
 Content-Type: application/json
 
    {
-    "id": 1,
+    # id not reuqired will auto-generate in db
     "title": "Buy clothes",
     "description": "clean everything and organize",
     "completed": false
@@ -20,10 +20,9 @@ POST {{url}}/api/todos
 Content-Type: application/json
 
    {
-    "id": 2,
     "title": "Buy perfume",
     "description": "working and testing on",
-    "completed": false
+    "completed": true
     }
 
 
@@ -32,11 +31,10 @@ GET {{url}}/api/todos/1
 
 
 ### updated 2 -> 3
-PUT {{url}}/api/todos/2
+PUT {{url}}/api/todos/10
 Content-Type: application/json
 
 {
-  "id": 3,
   "title": "Buy Items",
   "description": "check and organize everything",
   "completed": true
@@ -44,5 +42,9 @@ Content-Type: application/json
 
 
 ###
-DELETE {{url}}/api/todos/2
+DELETE {{url}}/api/todos/1
 Content-Type: application/json
+
+
+###
+GET {{url}}/settings
