@@ -1,13 +1,24 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from database import Base
 
-# database models/table:
-class Todo(Base):
-    __tablename__="todos"   #table name
 
-    id= Column(Integer, primary_key=True, index=True)
-    title=Column(String)
-    description=Column(String)
-    completed=Column(Boolean)
+# class Note(Base):
+#     __tablename__ = "notes"
 
+#     id = Column(Integer, primary_key=True, index=True)
+#     title = Column(String, index=True)
+#     description = Column(String)
+#     completed = Column(Boolean)
+#     date = Column(DateTime)
+
+class User(Base):
+    __tablename__="users"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String)
+    email = Column(String)
+    password = Column(String)
+    date = Column(DateTime)
+
+
+
+ 

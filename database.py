@@ -13,9 +13,17 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
+
+# Loads the environment variables from .env using load_dotenv
+# Creates a SQLAlchemy engine using the database URL from the environment variables
+# Creates a SessionLocal class for database sessions
+# Defines a Base class for declarative models which will be used to create database tables
+# Provides a get_db function to manage database connections

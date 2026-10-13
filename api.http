@@ -1,50 +1,52 @@
 @url = http://127.0.0.1:8000
 
-###
-GET {{url}}/api/todos
+##
+GET {{url}}/api/users
 
-# one request body = one Todos object.
+
+# one request body = one object.
 ###
-POST {{url}}/api/todos
+POST {{url}}/api/users
 Content-Type: application/json
 
    {
     # id not reuqired will auto-generate in db
-    "title": "Buy clothes",
-    "description": "clean everything and organize",
-    "completed": false
+  "username": "Emily",
+    "email": "Emily@gmail.com",
+    "password": "testing",
+    "date": "{{$datetime iso8601}}"
     }
 
+
+# one request body = one object.
 ###
-POST {{url}}/api/todos
+POST {{url}}/api/users
 Content-Type: application/json
 
    {
-    "title": "Buy perfume",
-    "description": "working and testing on",
-    "completed": true
+    # id not reuqired will auto-generate in db
+    "username": "John",
+    "email": "John@gmail.com",
+    "password": "testing",
+    "date": "{{$datetime iso8601}}"
     }
 
-
 ###
-GET {{url}}/api/todos/1
+GET {{url}}/api/users/1
 
 
 ### updated 2 -> 3
-PUT {{url}}/api/todos/10
+PUT {{url}}/api/users/1
 Content-Type: application/json
 
 {
-  "title": "Buy Items",
-  "description": "check and organize everything",
-  "completed": true
+  "username": "Lia",
+    "email": "Lia@gmail.com",
+    "password": "testing",
+    "date": "{{$datetime iso8601}}"
 }
 
-
 ###
-DELETE {{url}}/api/todos/1
+DELETE {{url}}/api/users/1
 Content-Type: application/json
 
-
-###
-GET {{url}}/settings

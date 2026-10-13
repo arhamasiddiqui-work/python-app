@@ -1,68 +1,64 @@
-from fastapi import FastAPI, HTTPException,Depends
-from pydantic import BaseModel
-from sqlalchemy import create_engine, Column, Integer, String, Boolean
-from sqlalchemy.orm import sessionmaker,declarative_base,Session
-from config import get_settings
-import models, schemas
+from fastapi import FastAPI, Depends, HTTPException
 from database import engine, get_db
+from sqlalchemy.orm import Session
 from typing import List
 
-# dict              → todo["id"]
-# Todos object      → todo.id
 
+import models, schemas
 
-# models — your file containing database models.
-# Base — the foundation used to define your database tables.
-# metadata — keeps information about those tables.
-# create_all() — creates tables that don't exist yet.
-# engine — the connection to your Neon database.
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# create todos in db
-@app.post("/api/todos", response_model=schemas.Todo)
-def create_todos(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
-    todos = models.Todo(**todo.model_dump())
-    db.add(todos)
+# create users:  schemas.User
+@app.post("/api/users", response_model=schemas.User)
+def create_users(User: schemas.UserCreate, db: Session = Depends(get_db)):
+    users = models.User(**User.model_dump())
+    db.add(users)
     db.commit()
-    db.refresh(todos)
-    return todos
+    db.refresh(users)
+    return users
 
-# get all todos
-@app.get("/api/todos", response_model=List[schemas.Todo])
-def read_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    todos = db.query(models.Todo).offset(skip).limit(limit).all()
-    return todos
 
-# get single todo
-@app.get("/api/todos/{todo_id}", response_model=schemas.Todo)
-def read_single_todo(todo_id: int, db: Session = Depends(get_db)):
-    todos = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-    if todos is None:
-        raise HTTPException(status_code=404, detail="Todo not found")
-    return todos
+# get all users : List [schemas.User]
+@app.get("/api/users", response_model=List[schemas.User])
+def get_all_users(skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):
+    users = db.query(models.User).offset(skip).limit(limit).all()
+    return users
 
-# update single todo
-@app.put("/api/todos/{todo_id}", response_model=schemas.Todo)
-def update_todos(todo_id:int, db:Session=Depends(get_db),
-                  updatedTask:schemas.TodoCreate=None):
-    todos = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-    if todos is None:
-        raise HTTPException(status_code=404, detail="Todo not found")
-    todos.title = updatedTask.title
-    todos.description = updatedTask.description
-    todos.completed = updatedTask.completed
-    db.add(todos)
+
+# get single User: schemas.User
+@app.get("/api/users/{user_id}", response_model=schemas.User)
+def get_users(user_id: int, db: Session = Depends(get_db)):
+    users = db.query(models.User).filter(models.User.id == user_id).first()
+    return users
+
+
+# update a User:
+@app.put("/api/users/{user_id}", response_model=schemas.User)
+def update_users(
+    user_id: int,
+    db: Session = Depends(get_db),
+    updated_users: schemas.UserCreate = None,
+):
+    users = db.query(models.User).filter(models.User.id == user_id).first()
+    if not users:
+        raise HTTPException(stats_code=404, detail="User not found")
+    users.title = updated_users.title
+    users.description = updated_users.description
+    users.completed = updated_users.completed
+    db.add(users)
     db.commit()
-    db.refresh(todos)
-    return todos
+    db.refresh(users)
+    return users
 
-@app.delete("/api/todos/{todo_id}", response_model=schemas.Todo)
-def delete_todos(todo_id:int, db:Session=Depends(get_db)):
-    todos= db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-    if todos is None:
-        raise HTTPException(status_code=404, detail="Todo not found")
-    db.delete(todos)
+
+# delete a User:
+@app.delete("/api/users/{user_id}", response_model=schemas.User)
+def delete_users(user_id: int, db: Session = Depends(get_db)):
+    users = db.query(models.User).filter(models.User.id == user_id).first()
+    if not users:
+        raise HTTPException(status_code=404, detail="User not found")
+    db.delete(users)
     db.commit()
-    return todos
+    return {"message": "users deleted successfully", "User": users}
