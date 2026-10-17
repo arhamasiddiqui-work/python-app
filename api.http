@@ -10,10 +10,10 @@ POST {{url}}/api/users
 Content-Type: application/json
 
    {
-    # id not reuqired will auto-generate in db
-  "username": "Emily",
+    # id not required will auto-generate in db
+    "username": "Emily",
     "email": "Emily@gmail.com",
-    "password": "testing",
+    "password":"8",
     "date": "{{$datetime iso8601}}"
     }
 
@@ -24,7 +24,7 @@ POST {{url}}/api/users
 Content-Type: application/json
 
    {
-    # id not reuqired will auto-generate in db
+    # id not required will auto-generate in db
     "username": "John",
     "email": "John@gmail.com",
     "password": "testing",
@@ -40,7 +40,7 @@ PUT {{url}}/api/users/1
 Content-Type: application/json
 
 {
-  "username": "Lia",
+   "username": "Lia",
     "email": "Lia@gmail.com",
     "password": "testing",
     "date": "{{$datetime iso8601}}"
@@ -50,3 +50,27 @@ Content-Type: application/json
 DELETE {{url}}/api/users/1
 Content-Type: application/json
 
+
+###
+POST {{url}}/api/login
+Content-Type: application/json
+
+{
+   "username": "authuser",
+    "email": "authUser@gmail.com",
+    "password": "1234",
+    "date": "{{$datetime iso8601}}"
+}
+###
+# GET {{url}}/api/login/secure
+# Authorization: ""
+###
+POST {{url}}/api/register
+Content-Type: application/json
+
+{
+    "username": "authUser",
+    "email": "authUser@gmail.com",
+    "password": "1234",
+    "date": "{{$datetime iso8601}}"
+}

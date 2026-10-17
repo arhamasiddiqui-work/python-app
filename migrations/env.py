@@ -8,7 +8,7 @@ from config import get_settings
 from models import User
 from todo_api.models import Todo
 from database import Base 
-# after these change change target_metadata=None to target_metadata=Base.metadata and write config.set_main_option("sqlalchemy.url", get_settings().database_url)
+# after these changes, change target_metadata=None -> target_metadata=Base.metadata and write config.set_main_option("sqlalchemy.url", get_settings().database_url)
 
 from alembic import context
 

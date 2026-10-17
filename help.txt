@@ -11,79 +11,24 @@ for formatting:
 uv run ruff format
 uvx ruff format
 
-1. Refresh Python basics
-Don't build anything yet. Just get comfortable again.
+Authentication Process:
+1. User registers
+Username, email, password
 
-2. Refresh FastAPI basics
-Routes, path/query params, request bodies, Pydantic, responses, status codes, etc.
+2. FastAPI hashes the password
+Store the hash in your Neon users table, not the plain password
 
-3. THEN BUILD THIS:
+3. User logs in
+Find the user in Neon and verify their password
 
-📝 Project #1 — Todo API
+4. FastAPI creates a JWT
+Return an access token if login succeeds
 
-Build it without following a tutorial.
+5. User requests their todos
+Send the token; FastAPI verifies it and identifies the user
 
-Your API should have:
-
-POST   /todos        → create todo
-GET    /todos        → get all todos
-GET    /todos/{id}   → get one todo
-PUT    /todos/{id}   → update todo
-DELETE /todos/{id}   → delete todo
-
-Initially, don't use a database.
-
-Just store the todos in a Python list/dictionary.
-
-You'll practice:
-
-FastAPI routes
-HTTP methods
-Pydantic(data validation)
-request/response data
-IDs
-CRUD
-error handling
-
-Then Project #2
-
-Build the same kind of thing but slightly harder:
-
-Expense Tracker API
-Again, start without a database.
-Add:
-
-expenses
-categories
-amounts
-dates
-filtering
-totals
-
-Then Project #3
-Book/Library API
-
-Add relationships:
-
-Authors
-   ↓
-Books
-
-THEN 🚨 introduce PostgreSQL.
-
-Take your Todo API and rebuild it:
-
-FastAPI
-   ↓
-PostgreSQL
-
-Now learn SQL because you need it for the project, rather than studying SQL endlessly beforehand.
-
-Then add authentication.
-
-
-
-
+6. Return only that user's todos
+Use the authenticated user's ID to query Neon
 
 
 
